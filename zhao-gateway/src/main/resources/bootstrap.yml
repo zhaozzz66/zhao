@@ -1,0 +1,45 @@
+server:
+  port: 9999
+
+
+spring:
+  application:
+    name: zhaogateway
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      #nacos地址
+      server-addr: ${nacos.addr.${spring.profiles.active}}
+      #注册中心参数配置
+      discovery:
+        #注册到指定空间
+        namespace: ${nacos.namespace.${spring.profiles.active}}
+      #配置中心参数配置
+      config:
+        #配置文件存放的空间
+        namespace: ${nacos.namespace.${spring.profiles.active}}
+        #文件类型
+        file-extension: yml
+  config:
+    #导入主配置文件
+    import:
+      - nacos:${spring.application.name}-${spring.profiles.active}.yml
+
+
+nacos:
+  addr:
+    #开发注册地址
+    dev: 175.24.184.150:9802
+    #测试注册地址
+    test: xxx
+    #生产注册地址
+    prod: xxx
+  namespace:
+    #开发配置文件空间
+    dev: 37528b22-1bcb-497e-bca9-0b9a509ea949
+    #测试配置文件空间
+    test: xxx
+    #生产配置文件空间
+    prod: xxx
+

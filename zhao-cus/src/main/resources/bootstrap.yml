@@ -1,0 +1,62 @@
+server:
+  port: 10001
+
+
+spring:
+  application:
+    name: zhaocus
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      #nacos地址
+      server-addr: ${nacos.addr.${spring.profiles.active}}
+      #注册中心参数配置
+      discovery:
+        #注册到指定空间
+        namespace: ${nacos.namespace.${spring.profiles.active}}
+      #配置中心参数配置
+      config:
+        #配置文件存放的空间
+        namespace: ${nacos.namespace.${spring.profiles.active}}
+        #文件类型
+        file-extension: yml
+        #shared-configs（共享配置）：
+        #shared-configs通常用于指定一组共享的配置文件，这些配置文件可以被多个应用或服务共享使用。这意味着如果你对共享配置文件进行了修改，那么所有引用这个共享配置文件的应用都会受到影响。
+        #在Nacos中，shared-configs的配置项通常不指定group，因为它们被设计为公共的配置，可以被不同group的应用所共享。
+        #使用场景：当你有一组通用的配置信息，如数据库连接信息、Redis连接信息等，这些信息被多个应用共享时，你可以使用shared-configs来指定这些共享的配置文件。
+        shared-configs:
+          #配置文件名称
+          - data-id: application-mysql.yml
+            #配置文件所属的组
+            #group: ${spring.profiles.active}
+            #是否开启动态刷新
+            refresh: false
+
+          - data-id: application-redis.yml
+            refresh: false
+
+          - data-id: application-common.yml
+            refresh: true
+  config:
+    #导入主配置文件
+    import:
+      - nacos:${spring.application.name}-${spring.profiles.active}.yml
+
+
+nacos:
+  addr:
+    #开发注册地址
+    dev: 175.24.184.150:9802
+    #测试注册地址
+    test: xxx
+    #生产注册地址
+    prod: xxx
+  namespace:
+    #开发配置文件空间
+    dev: 37528b22-1bcb-497e-bca9-0b9a509ea949
+    #测试配置文件空间
+    test: xxx
+    #生产配置文件空间
+    prod: xxx
+

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhao.mapper.CustContactInfoRelMapper">
+
+    <resultMap type="com.zhao.entity.cus.CustContactInfoRel" id="CustContactInfoRelMap">
+        <result property="custConnectId" column="CUST_CONNECT_ID" jdbcType="INTEGER"/>
+        <result property="contactId" column="CONTACT_ID" jdbcType="INTEGER"/>
+        <result property="custId" column="CUST_ID" jdbcType="INTEGER"/>
+        <result property="remark" column="REMARK" jdbcType="VARCHAR"/>
+        <result property="statusCd" column="STATUS_CD" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CustContactInfoRelMap">
+        select CUST_CONNECT_ID,
+               CONTACT_ID,
+               CUST_ID,
+               REMARK,
+               STATUS_CD
+        from cust_contact_info_rel
+        where CUST_CONNECT_ID = #{custConnectId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CustContactInfoRelMap">
+        select
+        CUST_CONNECT_ID,CONTACT_ID,CUST_ID,REMARK,STATUS_CD
+        from cust_contact_info_rel
+        <where>
+            <if test="custConnectId != null">
+                and CUST_CONNECT_ID = #{custConnectId}
+            </if>
+            <if test="contactId != null">
+                and CONTACT_ID = #{contactId}
+            </if>
+            <if test="custId != null">
+                and CUST_ID = #{custId}
+            </if>
+            <if test="remark != null and remark != ''">
+                and REMARK = #{remark}
+            </if>
+            <if test="statusCd != null and statusCd != ''">
+                and STATUS_CD = #{statusCd}
+            </if>
+        </where>
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from cust_contact_info_rel
+        <where>
+            <if test="custConnectId != null">
+                and CUST_CONNECT_ID = #{custConnectId}
+            </if>
+            <if test="contactId != null">
+                and CONTACT_ID = #{contactId}
+            </if>
+            <if test="custId != null">
+                and CUST_ID = #{custId}
+            </if>
+            <if test="remark != null and remark != ''">
+                and REMARK = #{remark}
+            </if>
+            <if test="statusCd != null and statusCd != ''">
+                and STATUS_CD = #{statusCd}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="custConnectId" useGeneratedKeys="true">
+        insert into cust_contact_info_rel(CONTACT_ID, CUST_ID, REMARK, STATUS_CD)
+        values (#{contactId}, #{custId}, #{remark}, #{statusCd})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="custConnectId" useGeneratedKeys="true">
+        insert into cust_contact_info_rel(CONTACT_ID,CUST_ID,REMARK,STATUS_CD)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.contactId},#{entity.custId},#{entity.remark},#{entity.statusCd})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="custConnectId" useGeneratedKeys="true">
+        insert into cust_contact_info_rel(CONTACT_ID,CUST_ID,REMARK,STATUS_CD)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.contactId},#{entity.custId},#{entity.remark},#{entity.statusCd})
+        </foreach>
+        on duplicate key update
+        CONTACT_ID = values(CONTACT_ID),CUST_ID = values(CUST_ID),REMARK = values(REMARK),STATUS_CD = values(STATUS_CD)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update cust_contact_info_rel
+        <set>
+            <if test="contactId != null">
+                CONTACT_ID = #{contactId},
+            </if>
+            <if test="custId != null">
+                CUST_ID = #{custId},
+            </if>
+            <if test="remark != null and remark != ''">
+                REMARK = #{remark},
+            </if>
+            <if test="statusCd != null and statusCd != ''">
+                STATUS_CD = #{statusCd},
+            </if>
+        </set>
+        where CUST_CONNECT_ID = #{custConnectId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from cust_contact_info_rel
+        where CUST_CONNECT_ID = #{custConnectId}
+    </delete>
+
+</mapper>
+
