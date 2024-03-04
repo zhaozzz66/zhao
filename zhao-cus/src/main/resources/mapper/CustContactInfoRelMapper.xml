@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zhao.mapper.CustContactInfoRelMapper">
+<mapper namespace="com.zhao.cus.mapper.CustContactInfoRelMapper">
 
     <resultMap type="com.zhao.entity.cus.CustContactInfoRel" id="CustContactInfoRelMap">
         <result property="custConnectId" column="CUST_CONNECT_ID" jdbcType="INTEGER"/>

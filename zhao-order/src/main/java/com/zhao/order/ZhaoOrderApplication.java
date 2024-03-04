@@ -1,8 +1,11 @@
-package com.zhao;
+package com.zhao.order;
 
+import com.zhao.openfeign.clients.CusClients;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
+@EnableFeignClients(clients = {CusClients.class})
 @SpringBootApplication
 public class ZhaoOrderApplication {
 

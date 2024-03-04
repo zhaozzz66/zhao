@@ -4,7 +4,7 @@ server:
 
 spring:
   application:
-    name: zhaoorder
+    name: zhao-order
   profiles:
     active: dev
   cloud:
@@ -21,6 +21,10 @@ spring:
         namespace: ${nacos.namespace.${spring.profiles.active}}
         #文件类型
         file-extension: yml
+        extension-configs:
+          - data-id: ${spring.application.name}-${spring.profiles.active}.yml
+            group: ${spring.profiles.active}
+            refresh: true
         #shared-configs（共享配置）：
         #shared-configs通常用于指定一组共享的配置文件，这些配置文件可以被多个应用或服务共享使用。这意味着如果你对共享配置文件进行了修改，那么所有引用这个共享配置文件的应用都会受到影响。
         #在Nacos中，shared-configs的配置项通常不指定group，因为它们被设计为公共的配置，可以被不同group的应用所共享。
@@ -35,11 +39,6 @@ spring:
 
           - data-id: application-common.yml
             refresh: true
-  config:
-    #导入主配置文件
-    import:
-      - nacos:${spring.application.name}-${spring.profiles.active}.yml
-
 
 nacos:
   addr:

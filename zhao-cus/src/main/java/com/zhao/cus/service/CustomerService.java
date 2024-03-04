@@ -1,4 +1,4 @@
-package com.zhao.service;
+package com.zhao.cus.service;
 
 import com.github.pagehelper.PageInfo;
 import com.zhao.entity.cus.Customer;

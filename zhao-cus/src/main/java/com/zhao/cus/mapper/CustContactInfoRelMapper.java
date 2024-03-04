@@ -1,4 +1,4 @@
-package com.zhao.mapper;
+package com.zhao.cus.mapper;
 
 import com.zhao.entity.cus.CustContactInfoRel;
 import org.apache.ibatis.annotations.Param;

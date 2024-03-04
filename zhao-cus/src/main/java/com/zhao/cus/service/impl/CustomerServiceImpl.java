@@ -1,11 +1,11 @@
-package com.zhao.service.impl;
+package com.zhao.cus.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zhao.cus.mapper.CustomerMapper;
+import com.zhao.cus.service.CustomerService;
 import com.zhao.entity.cus.Customer;
-import com.zhao.mapper.CustomerMapper;
-import com.zhao.service.CustomerService;
 import com.zhao.utils.PageRequest;
 import org.springframework.stereotype.Service;
 

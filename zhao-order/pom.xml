@@ -41,6 +41,10 @@
             <artifactId>zhao-feign-api</artifactId>
             <version>0.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -50,7 +54,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.zhao.ZhaoOrderApplication</mainClass>
+                    <mainClass>com.zhao.order.ZhaoOrderApplication</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>

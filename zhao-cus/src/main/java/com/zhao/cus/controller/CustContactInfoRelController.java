@@ -1,8 +1,8 @@
-package com.zhao.controller;
+package com.zhao.cus.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.zhao.cus.service.CustContactInfoRelService;
 import com.zhao.entity.cus.CustContactInfoRel;
-import com.zhao.service.CustContactInfoRelService;
 import com.zhao.utils.PageRequest;
 import com.zhao.utils.R;
 import org.springframework.web.bind.annotation.*;

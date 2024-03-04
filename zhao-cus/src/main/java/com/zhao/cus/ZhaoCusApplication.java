@@ -1,10 +1,9 @@
-package com.zhao;
+package com.zhao.cus;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-@MapperScan("com.zhao.mapper")
+@MapperScan("com.zhao.cus.mapper")
 @SpringBootApplication
 public class ZhaoCusApplication {
 
