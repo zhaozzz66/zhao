@@ -17,7 +17,6 @@
         <spring-boot.version>2.7.6</spring-boot.version>
         <spring.cloud-version>2021.0.8</spring.cloud-version>
         <alibaba.cloud-version>2021.0.5.0</alibaba.cloud-version>
-        <mysql.version>8.0.31</mysql.version>
         <mybatis.version>2.3.0</mybatis.version>
         <pagehelper.version>2.1.0</pagehelper.version>
     </properties>
